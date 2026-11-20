@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!-- 
+  =====================================================================
+  VERSIÓN DE PRÁCTICA: COLOCACIÓN DE IMÁGENES Y TEXTOS CON CSS3
+  Módulo: Aplicaciones Web (2.º SMR)
+
+  INSTRUCCIONES:
+  - El HTML ya está terminado. NO hay que tocarlo.
+  - Tu trabajo es completar el CSS de la etiqueta <style> (en el <head>).
+  - Busca los comentarios "TODO" y escribe las propiedades que se piden.
+  - Cada ejercicio indica la clase que debes estilizar y qué efecto buscas.
+  - Cuando termines, la página debe verse igual que la versión comentada.
+  - Pista: consulta las propiedades en https://developer.mozilla.org/es/
+  =====================================================================
+-->
+<html lang="es"> <!-- lang="es": indica que la página está en español -->
+<head>
+<!-- Codificación de caracteres: necesaria para ver bien tildes y la letra ñ -->
+<meta charset="UTF-8">
+
+<!-- Viewport: hace que la página se adapte al ancho del móvil (diseño responsive) -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Título que aparece en la pestaña del navegador -->
+<title>PRÁCTICA - Colocación de imágenes y textos con CSS3</title>
+
+<style>
+/* =====================================================================
+   BASE: estilos generales de toda la página
+   ===================================================================== */
+
+/* El selector * afecta a TODOS los elementos.
+   box-sizing: border-box hace que el width incluya el padding y el borde.
+   Así, un elemento de 200px mide 200px en total y no se "estira". */
+* { box-sizing: border-box; }
+
+/* body: el cuerpo de la página */
+body {
+  font-family: Arial, Helvetica, sans-serif; /* tipo de letra (si no hay Arial, usa Helvetica, y si no, una sans-serif cualquiera) */
+  line-height: 1.6;      /* altura de línea: 1.6 veces el tamaño de la letra, para leer mejor */
+  color: #222;           /* color del texto (gris casi negro) */
+  background: #f4f6fa;   /* color de fondo de la página */
+  margin: 0;             /* quitamos el margen por defecto del navegador */
+  padding: 20px;         /* espacio interior entre el borde de la ventana y el contenido */
+}
+
+h1 { text-align: center; color: #1b3a6b; } /* título principal centrado y en azul oscuro */
+
+/* section: cada "tarjeta" blanca donde está un ejemplo */
+section {
+  background: #fff;                    /* fondo blanco */
+  max-width: 900px;                    /* ancho máximo: en pantallas grandes no pasa de 900px */
+  margin: 0 auto 28px;                 /* arriba 0 | izquierda y derecha auto (centra la caja) | abajo 28px */
+  padding: 20px;                       /* espacio entre el borde de la tarjeta y su contenido */
+  border-radius: 10px;                 /* esquinas redondeadas */
+  box-shadow: 0 2px 6px rgba(0,0,0,.12); /* sombra: desplazamiento x, y, difuminado y color (negro al 12 %) */
+}
+
+h2 {
+  margin-top: 0;                       /* pegamos el título al borde superior de la tarjeta */
+  color: #1b3a6b;
+  border-bottom: 2px solid #4f8cff;    /* línea azul debajo del título */
+  padding-bottom: 6px;                 /* separación entre el texto y esa línea */
+}
+
+/* code: aspecto para resaltar propiedades CSS dentro de los textos */
+code { background: #eef2ff; padding: 1px 6px; border-radius: 4px; color: #b00; }
+
+/* Regla importante para imágenes:
+   max-width: 100% -> la imagen nunca será más ancha que su contenedor (evita que se salga en el móvil).
+   display: block  -> la imagen deja de ser "en línea" y se comporta como un bloque
+                      (así desaparece el pequeño hueco que queda debajo de las imágenes). */
+img { max-width: 100%; display: block; }
+
+
+/* =====================================================================
+   EJERCICIO 1. FLOAT: el texto rodea la imagen
+   Objetivo: la primera imagen a la izquierda y la segunda a la derecha,
+   con el texto rodeándolas.
+   ===================================================================== */
+
+.float-izq {
+  float:left; /* TODO 1.1: haz que la imagen flote a la izquierda (float) */
+  width: 160px;/* TODO 1.2: dale un ancho de 160px (width) */
+  margin: 0 16px 0 8px;/* TODO 1.3: añade un margen solo a la derecha (16px) y abajo (8px) con margin */
+}
+
+.float-der {
+  float: right;/* TODO 1.4: igual que la anterior, pero flotando a la derecha
+             y con el margen en el lado izquierdo (16px) */
+  width: 160px;
+  margin: 0 0 16px 8px;           
+}
+
+.limpiar::after {
+      content: "";
+      display: block;
+
+  /* TODO 1.5 (clearfix): para que el contenedor abrace a las imágenes flotantes necesitas
+     tres propiedades: content (vacío ""), display (block) y clear (both) */
+}
+
+
+/* =====================================================================
+   EJERCICIO 2. IMAGEN EN LÍNEA
+   Objetivo: el iconito rojo debe quedar centrado verticalmente con el texto.
+   ===================================================================== */
+
+.en-linea {
+  display: inline-block;/* TODO 2.1: ancho de 40px */
+  width: 40px;/* TODO 2.2: alineación vertical centrada (vertical-align) 
+               Prueba también top, bottom y baseline y observa la diferencia */
+  height: 40px;
+  vertical-align: middle;
+}
+
+
+/* =====================================================================
+   EJERCICIO 3. FLEXBOX
+   Objetivo: imagen y texto en fila; luego invertidos; luego en columna.
+   ===================================================================== */
+
+.flex {
+  display: flex;/* TODO 3.1: activa Flexbox en el contenedor (display) */
+  gap: 16px;/* TODO 3.2: separa los hijos 16px entre sí (gap) */
+  align-items: center;/* TODO 3.3: centra los hijos verticalmente (align-items) */
+  margin-bottom: 14px;
+}
+
+.flex img {
+  width: 160px;/* TODO 3.4: ancho de 160px */
+  flex-shrink: 0;/* TODO 3.5: evita que la imagen se encoja (flex-shrink con valor 0) */
+}
+
+.flex.inversa {
+  /* TODO 3.6: invierte el orden de los hijos (flex-direction: row-reverse) */
+}
+
+.flex.columna {
+  /* TODO 3.7: apila los hijos en vertical (flex-direction: column) */
+  /* TODO 3.8: centra el texto (text-align) */
+}
+
+
+/* =====================================================================
+   EJERCICIO 4. GRID
+   Objetivo: galería de 3 columnas, con la primera imagen ocupando 2.
+   ===================================================================== */
+
+.galeria {
+  /* TODO 4.1: activa la rejilla (display: grid) */
+  /* TODO 4.2: crea 3 columnas iguales (grid-template-columns con repeat y fr) */
+  /* TODO 4.3: separa las celdas 10px (gap) */
+}
+
+.galeria figure { margin: 0; }
+
+.galeria img {
+  /* TODO 4.4: ancho del 100% */
+  /* TODO 4.5: altura de 120px */
+  /* TODO 4.6: recorta la imagen sin deformarla (object-fit: cover) */
+  /* TODO 4.7: esquinas redondeadas de 8px */
+}
+
+.galeria figcaption { font-size: .85rem; text-align: center; color: #555; }
+
+.galeria .grande {
+  /* TODO 4.8: que esta celda ocupe 2 columnas (grid-column: span 2) */
+}
+
+
+/* =====================================================================
+   EJERCICIO 5. POSITION
+   Objetivo: etiqueta roja arriba a la izquierda y franja negra abajo,
+   ambas encima de la imagen.
+   ===================================================================== */
+
+.tarjeta {
+  /* TODO 5.1: convierte a la tarjeta en la referencia de sus hijos (position: relative) */
+  max-width: 420px;
+}
+
+.tarjeta img { width: 100%; border-radius: 8px; }
+
+.tarjeta .etiqueta {
+  /* TODO 5.2: position absolute */
+  /* TODO 5.3: sepárala 10px de arriba (top) y 10px de la izquierda (left) */
+  background: #e53935;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: .8rem;
+}
+
+.tarjeta .pie {
+  /* TODO 5.4: position absolute */
+  /* TODO 5.5: pégala abajo y estírala de lado a lado (bottom, left y right a 0) */
+  /* TODO 5.6: fondo negro semitransparente: background con rgba(0,0,0,.6) */
+  color: #fff;
+  padding: 8px 12px;
+  /* TODO 5.7: redondea SOLO las esquinas de abajo (border-radius: 0 0 8px 8px) */
+}
+
+
+/* =====================================================================
+   EJERCICIO 6. BACKGROUND
+   Objetivo: caja con imagen de fondo y texto centrado.
+   (La imagen de fondo ya está dada; no hace falta escribir la URL.)
+   ===================================================================== */
+
+.hero {
+  height: 180px;
+  border-radius: 8px;
+  color: #fff;
+  text-shadow: 0 2px 4px #000;
+  background: #2e7d32; /* color de relleno provisional */
+
+  /* TODO 6.1: sustituye el color de arriba por una imagen de fondo.
+     Usa esta imagen:
+     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%232e7d32'/%3E%3Ccircle cx='150' cy='40' r='22' fill='%23ffeb3b'/%3E%3Cpath d='M0 150l60-80 50 60 30-30 60 50z' fill='%231b5e20'/%3E%3C/svg%3E")
+     y añade: center / cover no-repeat */
+
+  /* TODO 6.2: centra el texto vertical y horizontalmente con Flexbox
+               (display: flex + align-items + justify-content) */
+}
+
+
+/* =====================================================================
+   EJERCICIO 7. SHAPE-OUTSIDE
+   Objetivo: imagen redonda y texto adaptándose a la curva.
+   ===================================================================== */
+
+.redonda {
+  /* TODO 7.1: float a la izquierda */
+  width: 150px;
+  height: 150px;
+  /* TODO 7.2: forma circular (border-radius: 50%) */
+  /* TODO 7.3: que la imagen llene el círculo sin deformarse (object-fit) */
+  /* TODO 7.4: que el texto siga el círculo (shape-outside: circle(50%)) */
+  margin: 0 18px 6px 0;
+}
+
+
+/* =====================================================================
+   EJERCICIO 8. COLUMNAS CSS
+   Objetivo: texto en 2 columnas con línea separadora.
+   ===================================================================== */
+
+.columnas {
+  /* TODO 8.1: 2 columnas (column-count) */
+  /* TODO 8.2: separación de 28px entre columnas (column-gap) */
+  /* TODO 8.3: línea separadora gris (column-rule: 1px solid #ccc) */
+  text-align: justify;
+}
+
+.columnas img {
+  width: 100%;
+  margin-bottom: 10px;
+  /* TODO 8.4: evita que la imagen se parta entre columnas (break-inside: avoid) */
+}
+
+
+/* =====================================================================
+   EJERCICIO 9 (RETO). RESPONSIVE
+   Objetivo: en pantallas de 600px o menos, imagen y texto se apilan,
+   la galería pasa a 2 columnas y el texto a 1 columna.
+   ===================================================================== */
+
+/* TODO 9.1: escribe una regla @media (max-width: 600px) { ... } que contenga:
+     - .flex y .flex.inversa con flex-direction: column
+     - .galeria con grid-template-columns: 1fr 1fr
+     - .columnas con column-count: 1
+   Comprueba el resultado reduciendo el ancho de la ventana del navegador. */
+</style>
+</head>
+
+<body>
+
+<h1>Colocación de imágenes y textos con CSS3</h1>
+
+<!-- ================================================================ -->
+<!-- 1. FLOAT                                                          -->
+<!-- Fíjate en el ORDEN: la imagen va ANTES del párrafo al que rodea.  -->
+<!-- ================================================================ -->
+<section>
+  <h2>1. float: el texto rodea la imagen</h2>
+
+  <!-- class="float-izq": aplica el CSS de .float-izq (imagen a la izquierda).
+       alt: texto alternativo (accesibilidad y por si la imagen no carga). Es obligatorio. -->
+  <img class="float-izq" alt="Paisaje azul" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%234f8cff'/%3E%3Ccircle cx='50' cy='45' r='20' fill='%23ffd54f'/%3E%3Cpath d='M0 150l70-70 50 50 30-30 50 50z' fill='%23225'/%3E%3C/svg%3E">
+  <p>Con <code>float: left</code> la imagen se desplaza a la izquierda y el texto fluye a su derecha y por debajo. Es la técnica clásica de las revistas y se usaba para maquetar páginas enteras antes de Flexbox y Grid.</p>
+
+  <!-- Imagen flotando a la derecha -->
+  <img class="float-der" alt="Paisaje naranja" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23ff9800'/%3E%3Ccircle cx='150' cy='45' r='20' fill='%23fff'/%3E%3Cpath d='M0 150l60-60 60 40 30-30 50 50z' fill='%23a14400'/%3E%3C/svg%3E">
+  <p>Con <code>float: right</code> ocurre lo contrario. Los márgenes (<code>margin</code>) separan la imagen del texto. Cuando el texto es más corto que la imagen, el contenedor "se colapsa"; se soluciona con <code>clear: both</code> o con el truco del <code>::after</code> (clearfix) que se usa aquí en <code>.limpiar</code>.</p>
+
+  <!-- Este div vacío aplica el clearfix: obliga a la sección a abrazar las imágenes flotantes -->
+  <div class="limpiar"></div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 2. IMAGEN EN LÍNEA                                                -->
+<!-- La imagen está DENTRO del párrafo, entre palabras.                -->
+<!-- ================================================================ -->
+<section>
+  <h2>2. Imagen en línea con el texto</h2>
+  <p>Una imagen es <code>inline</code> por naturaleza. Aquí va
+    <img class="en-linea" alt="icono" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23e53935'/%3E%3C/svg%3E">
+    alineada en el centro vertical con <code>vertical-align: middle</code>, y se puede cambiar a <code>top</code>, <code>bottom</code> o <code>baseline</code> (valor por defecto).</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- 3. FLEXBOX                                                        -->
+<!-- Estructura: un div PADRE (class="flex") con 2 HIJOS: <img> y <p>. -->
+<!-- Flexbox se aplica al padre y coloca a los hijos.                  -->
+<!-- ================================================================ -->
+<section>
+  <h2>3. Flexbox: imagen y texto en fila, inversa y columna</h2>
+
+  <!-- Ejemplo A: fila normal (imagen a la izquierda, texto a la derecha) -->
+  <div class="flex">
+    <img alt="Imagen izquierda" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%239c27b0'/%3E%3Ccircle cx='60' cy='50' r='20' fill='%23fff'/%3E%3C/svg%3E">
+    <p><code>display: flex</code> coloca los hijos en fila. Con <code>align-items: center</code> el texto queda centrado verticalmente respecto a la imagen.</p>
+  </div>
+
+  <!-- Ejemplo B: MISMO HTML (imagen primero), pero con la clase "inversa" la imagen se ve a la derecha -->
+  <div class="flex inversa">
+    <img alt="Imagen derecha" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%2300897b'/%3E%3Ccircle cx='140' cy='50' r='20' fill='%23fff'/%3E%3C/svg%3E">
+    <p>Con <code>flex-direction: row-reverse</code> la imagen pasa a la derecha sin tocar el HTML.</p>
+  </div>
+
+  <!-- Ejemplo C: en columna -->
+  <div class="flex columna">
+    <img alt="Imagen arriba" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f06292'/%3E%3Ccircle cx='100' cy='75' r='30' fill='%23fff'/%3E%3C/svg%3E">
+    <p>Con <code>flex-direction: column</code> la imagen queda arriba y el texto debajo, centrado.</p>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 4. GRID                                                           -->
+<!-- <figure> agrupa una imagen con su pie de foto <figcaption>.       -->
+<!-- Es la etiqueta semántica correcta para imágenes con descripción.  -->
+<!-- ================================================================ -->
+<section>
+  <h2>4. Grid: galería de imágenes con pies de foto</h2>
+  <div class="galeria">
+
+    <!-- Esta figura lleva class="grande": ocupa 2 de las 3 columnas -->
+    <figure class="grande">
+      <img alt="Grande" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%234f8cff'/%3E%3Cpath d='M0 150l70-70 50 50 30-30 50 50z' fill='%23225'/%3E%3C/svg%3E">
+      <figcaption>Ocupa 2 columnas (<code>grid-column: span 2</code>)</figcaption>
+    </figure>
+
+    <!-- Las siguientes ocupan 1 columna cada una; la rejilla las coloca sola, de izquierda a derecha y de arriba abajo -->
+    <figure>
+      <img alt="Dos" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23ff9800'/%3E%3Ccircle cx='100' cy='75' r='30' fill='%23fff'/%3E%3C/svg%3E">
+      <figcaption>Imagen 2</figcaption>
+    </figure>
+    <figure>
+      <img alt="Tres" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%232e7d32'/%3E%3Ccircle cx='100' cy='75' r='30' fill='%23fff'/%3E%3C/svg%3E">
+      <figcaption>Imagen 3</figcaption>
+    </figure>
+    <figure>
+      <img alt="Cuatro" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%239c27b0'/%3E%3Ccircle cx='100' cy='75' r='30' fill='%23fff'/%3E%3C/svg%3E">
+      <figcaption>Imagen 4</figcaption>
+    </figure>
+    <figure>
+      <img alt="Cinco" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23e53935'/%3E%3Ccircle cx='100' cy='75' r='30' fill='%23fff'/%3E%3C/svg%3E">
+      <figcaption>Imagen 5</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 5. POSITION                                                       -->
+<!-- Tres elementos dentro de la tarjeta (el padre con position: relative): -->
+<!-- la imagen (normal) y dos capas que se colocan encima (absolute).  -->
+<!-- ================================================================ -->
+<section>
+  <h2>5. position: texto superpuesto sobre la imagen</h2>
+  <div class="tarjeta">
+    <img alt="Tarjeta" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%2300acc1'/%3E%3Ccircle cx='150' cy='40' r='20' fill='%23fff176'/%3E%3Cpath d='M0 150l60-70 50 50 30-25 60 45z' fill='%23006064'/%3E%3C/svg%3E">
+    <span class="etiqueta">Novedad</span>  <!-- arriba a la izquierda -->
+    <div class="pie">Pie con <code style="background:none;color:#ffd54f">position: absolute</code> dentro de un padre <code style="background:none;color:#ffd54f">relative</code></div> <!-- abajo, a todo el ancho -->
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 6. BACKGROUND                                                     -->
+<!-- No hay <img>: la imagen está en el CSS (clase .hero).             -->
+<!-- ================================================================ -->
+<section>
+  <h2>6. Imagen de fondo con texto centrado</h2>
+  <div class="hero"><h3>Texto sobre <code style="background:none;color:#fff">background</code></h3></div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 7. SHAPE-OUTSIDE                                                  -->
+<!-- ================================================================ -->
+<section>
+  <h2>7. shape-outside: el texto rodea una forma circular</h2>
+  <img class="redonda" alt="Redonda" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23ff7043'/%3E%3Ccircle cx='100' cy='100' r='50' fill='%23fff'/%3E%3C/svg%3E">
+  <p>Con <code>border-radius: 50%</code> la imagen se ve redonda, pero el texto seguiría rodeando el cuadrado. Añadiendo <code>shape-outside: circle(50%)</code> el texto se ajusta a la curva del círculo. Este efecto solo funciona con elementos flotantes (<code>float</code>). Es un buen ejemplo de CSS3 moderno para que el alumnado vea cómo cambia la caja de la imagen y la forma real que ve el texto.</p>
+  <div class="limpiar"></div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 8. COLUMNAS                                                       -->
+<!-- ================================================================ -->
+<section>
+  <h2>8. Columnas de texto con imagen</h2>
+  <div class="columnas">
+    <img alt="Columnas" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Crect width='200' height='100' fill='%235c6bc0'/%3E%3Ccircle cx='100' cy='50' r='25' fill='%23fff'/%3E%3C/svg%3E">
+    <p>Con <code>column-count: 2</code> el navegador reparte el texto en columnas como en un periódico, y <code>column-rule</code> dibuja la línea separadora. La imagen se mantiene íntegra gracias a <code>break-inside: avoid</code>.</p>
+    <p>Esta técnica es útil para textos largos en pantallas anchas. En móvil se pasa a una sola columna con una regla <code>@media</code>, que también está definida en el <code>head</code> de esta página.</p>
+  </div>
+</section>
+
+</body>
+</html>

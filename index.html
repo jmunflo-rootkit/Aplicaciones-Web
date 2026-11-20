@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicaciones Web - José Muñoz Flores</title>
+    <meta name="description" content="Índice de prácticas de la asignatura Aplicaciones Web">
+    <style>
+        :root {
+            --fondo: #f4f6fb;
+            --tarjeta: #ffffff;
+            --texto: #1f2937;
+            --suave: #6b7280;
+            --acento: #2563eb;
+            --borde: #e5e7eb;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --fondo: #111827;
+                --tarjeta: #1f2937;
+                --texto: #f3f4f6;
+                --suave: #9ca3af;
+                --acento: #60a5fa;
+                --borde: #374151;
+            }
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 24px 16px 48px;
+            background: var(--fondo);
+            color: var(--texto);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.5;
+        }
+        main { max-width: 760px; margin: 0 auto; }
+        header { margin-bottom: 28px; }
+        h1 { margin: 0 0 4px; font-size: 1.8rem; }
+        header p { margin: 0; color: var(--suave); }
+        section {
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+        h2 { margin: 0 0 8px; font-size: 1.1rem; }
+        ul { margin: 0; padding-left: 20px; }
+        li { margin: 6px 0; }
+        a { color: var(--acento); font-weight: 600; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .desc { color: var(--suave); font-size: 0.9rem; }
+        .aviso { color: var(--suave); font-style: italic; }
+    </style>
+</head>
+<body>
+<main>
+    <header>
+        <h1>Aplicaciones Web</h1>
+        <p>José Muñoz Flores · Índice de prácticas</p>
+    </header>
+
+    <section>
+        <h2>Práctica 1</h2>
+        <ul>
+            <li><a href="Pr%C3%A1ctica%201/ejercicio1.html">Ejercicio 1</a> <span class="desc">· Biografía con estilos en la propia página</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Práctica 2</h2>
+        <ul>
+            <li><a href="Pr%C3%A1ctica%202/ejercicio2.html">Ejercicio 2</a> <span class="desc">· Currículum con hoja de estilos externa</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Práctica 3</h2>
+        <ul>
+            <li><a href="Pr%C3%A1ctica%203/principal.html">Página principal</a> <span class="desc">· Menú de navegación (estilos1.css)</span></li>
+            <li><a href="Pr%C3%A1ctica%203/secundaria.html">Página secundaria</a> <span class="desc">· (estilos2.css)</span></li>
+            <li><a href="Pr%C3%A1ctica%203/documentos/practica3.pdf" target="_blank">Enunciado en PDF</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Miércoles</h2>
+        <ul>
+            <li><a href="Mi%C3%A9rcoles/miercoles.html">Enlaces e imagen de fondo</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Imágenes</h2>
+        <ul>
+            <li><a href="Im%C3%A1genes/colocacion_css3_practica.html">Colocación de imágenes y textos con CSS3</a></li>
+            <li><a href="Im%C3%A1genes/imagenes.html">Imágenes</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Servidor (XAMPP)</h2>
+        <ul>
+            <li><a href="Web%201/Index.html">Web 1</a> <span class="desc">· Práctica XAMPP</span></li>
+            <li><span class="aviso">Web 2 (Index.php): no se puede mostrar aquí porque PHP necesita un servidor.</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Otros</h2>
+        <ul>
+            <li><a href="bloques.html">Elementos de bloque</a> <span class="desc">· Primera página de prueba</span></li>
+        </ul>
+    </section>
+</main>
+</body>
+</html>
